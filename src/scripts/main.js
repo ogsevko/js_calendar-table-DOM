@@ -23,7 +23,7 @@ function calendarTable(year, month, element) {
   table.append(headerRow);
 
   // Rows of weeks
-  const numberOfWeeks = daysInMonth === 28 && firstDay === 1 ? 4 : 5;
+  const numberOfWeeks = Math.ceil((daysInMonth + firstDay) / 7);
 
   for (let j = 1, day = 1; j <= numberOfWeeks; j++) {
     const newRow = document.createElement('tr');
