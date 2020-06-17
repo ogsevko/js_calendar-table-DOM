@@ -4,8 +4,11 @@ const calendar = document.querySelector('#calendar');
 
 function calendarTable(year, month, element) {
   const daysInMonth = new Date(year, month, 0).getDate();
-  const firstDay = new Date(year, month - 1, 1).getDay();
-  const lastDay = new Date(year, month - 1, daysInMonth).getDay();
+  let firstDay = new Date(year, month - 1, 1).getDay();
+  let lastDay = new Date(year, month - 1, daysInMonth).getDay();
+
+  firstDay = firstDay === 0 ? 7 : firstDay;
+  lastDay = lastDay === 0 ? 7 : lastDay;
 
   const table = document.createElement('table');
 
@@ -23,7 +26,14 @@ function calendarTable(year, month, element) {
   table.append(headerRow);
 
   // Rows of weeks
-  const numberOfWeeks = daysInMonth === 28 && firstDay === 1 ? 4 : 5;
+  let numberOfWeeks = 5;
+
+  if (firstDay === 1 && daysInMonth === 28) {
+    numberOfWeeks = 4;
+  } else if ((firstDay === 6 && daysInMonth === 31)
+    || (firstDay === 7 && daysInMonth >= 30)) {
+    numberOfWeeks = 6;
+  }
 
   for (let j = 1, day = 1; j <= numberOfWeeks; j++) {
     const newRow = document.createElement('tr');
