@@ -21,3 +21,4 @@ Function `calendarTable(year, month, element)`
 **Result**
 
 - [DEMO LINK](https://ogsevko.github.io/js_calendar-table-DOM/)
+
